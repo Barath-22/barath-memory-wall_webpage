@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#3200BE">
+  <meta name="description" content="Barath's Memory Wall — celebrating the people and memories from 2022 to 2026.">
+  <title>Barath's Memory Wall | 2022–2026</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="script.js" defer></script>
+<style>
+.motion-orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}.motion-orb{position:absolute;border-radius:50%;opacity:.36}.motion-orb:nth-child(1){width:18px;height:18px;left:9%;top:24%;background:#fff;animation:oa 7s ease-in-out infinite alternate}.motion-orb:nth-child(2){width:11px;height:11px;left:25%;top:75%;background:#C8FAFA;animation:ob 6s ease-in-out infinite alternate}.motion-orb:nth-child(3){width:15px;height:15px;right:30%;top:16%;background:#FF96FF;animation:oa 8s ease-in-out infinite alternate-reverse}.motion-orb:nth-child(4){width:9px;height:9px;right:10%;top:56%;background:#fff;animation:ob 5.5s ease-in-out infinite alternate}.motion-orb:nth-child(5){width:13px;height:13px;left:47%;bottom:9%;background:#3200BE;opacity:.16;animation:oa 9s ease-in-out infinite alternate}@keyframes oa{to{transform:translate3d(35px,-28px,0) scale(1.35);opacity:.14}}@keyframes ob{to{transform:translate3d(-25px,-38px,0) scale(.75);opacity:.18}}
+.hero-copy-wrap>*{animation:lr .75s cubic-bezier(.2,.8,.2,1) both}.hero-copy-wrap>*:nth-child(2){animation-delay:.1s}.hero-copy-wrap>*:nth-child(3){animation-delay:.2s}.hero-copy-wrap>*:nth-child(4){animation-delay:.3s}@keyframes lr{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.hero-card{position:relative;transform-style:preserve-3d;will-change:transform}.hero-card:after{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;pointer-events:none;background:linear-gradient(115deg,transparent,#FF96FF,#C8FAFA,transparent);background-size:220% 220%;animation:bt 6s linear infinite;opacity:.65;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}@keyframes bt{50%{background-position:100% 100%}}
+.hero-year{background:linear-gradient(90deg,#FF96FF,#3200BE,#FF96FF);background-size:200% auto;color:transparent!important;-webkit-background-clip:text;background-clip:text;animation:yf 5s linear infinite}@keyframes yf{to{background-position:200% center}}
+.nav{transition:background .3s,box-shadow .3s}.nav.live-scrolled{background:rgba(255,255,255,.97);box-shadow:0 10px 34px rgba(50,0,190,.10)}
+.memory-card{transition:transform .28s}.memory-card:hover{transform:translateY(-7px)}.memory-card .face{transition:box-shadow .3s,border-color .3s}.memory-card:hover .face{box-shadow:0 28px 68px rgba(50,0,190,.19)!important;border-color:rgba(50,0,190,.20)}
+.memory-card .card-inner:after{content:"";position:absolute;inset:0;border-radius:24px;pointer-events:none;backface-visibility:hidden;background:linear-gradient(115deg,transparent 28%,rgba(255,255,255,.28) 47%,transparent 66%);transform:translateX(-135%);transition:transform .85s}.memory-card:not(.flipped):hover .card-inner:after{transform:translateX(135%)}
+.timeline article,.stats article{position:relative;overflow:hidden}.timeline article:after,.stats article:after{content:"";position:absolute;left:0;bottom:0;width:0;height:4px;background:linear-gradient(90deg,#3200BE,#FF96FF,#C8FAFA);transition:width .45s}.timeline article:hover:after,.stats article:hover:after{width:100%}
+.farewell h2{background:linear-gradient(90deg,#fff,#C8FAFA,#fff);background-size:200% auto;color:transparent!important;-webkit-background-clip:text;background-clip:text;animation:ff 8s linear infinite}@keyframes ff{to{background-position:200% center}}
+
+@media(max-width:800px){.motion-orb:nth-child(n+4){display:none}.memory-card:hover{transform:none}.memory-card .card-inner:after{display:none}}@media(hover:none){.memory-card:hover{transform:none}.memory-card .card-inner:after{display:none}}@media(prefers-reduced-motion:reduce){.motion-orbs,.hero-card:after{display:none}.hero-copy-wrap>*,.hero-year,.farewell h2{animation:none!important}}
+.promotion-timeline{grid-template-columns:repeat(3,minmax(0,1fr))!important}.promotion-timeline .period{font-weight:700;color:#3200BE;margin:.35rem 0 .65rem}.promotion-timeline article{min-width:0}.memory-card .role{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.memory-card .back{overflow-y:auto}.memory-card .memory{overflow-wrap:anywhere}.category-pills{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}.category-pills .tag{font-size:10px}.handwritten-note{font-weight:700;color:#3200BE}@media(max-width:760px){.promotion-timeline{grid-template-columns:1fr!important}}
+</style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="container nav-inner">
+      <a class="wordmark" href="#top" aria-label="Barath memory wall home">barath<span>.</span></a>
+      <button class="mobile-menu" id="menuButton" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#memories">Memory Wall</a>
+        <a href="#journey">Journey</a>
+        <a href="#leave">Leave a Memory</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <header class="hero">
+      <div class="pattern"></div><div class="motion-orbs" aria-hidden="true"><i class="motion-orb"></i><i class="motion-orb"></i><i class="motion-orb"></i><i class="motion-orb"></i><i class="motion-orb"></i></div>
+      <div class="blob blob-one"></div><div class="blob blob-two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy-wrap">
+          <div class="kicker">My last working day · My first company</div>
+          <h1>One chapter.<span>So many people.</span></h1>
+          <p class="hero-copy">Today is my last working day at my first company. Four years are difficult to fit into one goodbye. This is my little corner of the internet for the people, moments, conversations and memories that made the journey worth remembering.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#memories">Meet the people ↓</a>
+            <a class="btn btn-secondary" href="#journey">See the journey</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <div class="hero-year">2022→26</div>
+          <h2>Barath's Memory Wall</h2>
+          <p>Built with gratitude, questionable jokes, too many meetings and some genuinely unforgettable people.</p>
+        </aside>
+      </div>
+    </header>
+
+    <section id="intro">
+      <div class="container intro reveal">
+        <div class="statement">
+          <div class="eyebrow light">Before we begin</div>
+          <p class="big">Work gave me projects.<br><span>People gave me stories.</span></p>
+          <p>This page is for the second part. The webpage may have been created with the help of AI, but every memory here was handwritten by me.</p>
+        </div>
+        <div class="note">
+          <h2>How the wall works</h2>
+          <p>Every card represents someone who became part of this chapter. Click or tap a card to flip it around and read the memory behind it. Search by name or use a category to move through the people who made the journey what it was.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="memories" class="soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="copy">
+            <div class="eyebrow">The Memory Wall</div>
+            <h2 class="title">The people behind the memories.</h2>
+            <p class="subtitle">Some made hard days easier. Some made normal days funnier. Some did both. Flip a card to see what I'll remember.</p>
+          </div>
+          <div class="count-card"><strong id="peopleCount">0</strong><span>memories & counting</span></div>
+        </div>
+
+        <div class="toolbar reveal">
+          <label class="search-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="search" type="search" placeholder="Search a colleague…" aria-label="Search colleagues">
+          </label>
+          <div class="filters" id="filters" aria-label="Memory categories"></div>
+        </div>
+
+        <div id="cards" class="cards" aria-live="polite"></div>
+        <div id="empty" class="empty">No memories found. Try another name or category.</div>
+      </div>
+    </section>
+
+    <section id="journey" class="blue-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="copy">
+            <div class="eyebrow light">My promotion journey · 2022 → 2026</div>
+            <h2 class="title white">A journey measured in more than years.</h2>
+            <p class="subtitle pale">The roles changed, the work evolved and the calendar kept moving. The people are what made each phase memorable.</p>
+          </div>
+        </div>
+        <div class="timeline reveal promotion-timeline">
+          <article><b>01</b><h3>Graduate Trainee</h3><p class="period">04 Jul 2022 → 23 Jul 2023</p><p>The beginning: learning the ropes, meeting the people, and collecting the first unforgettable stories.</p></article>
+          <article><b>02</b><h3>Jr BI Analyst</h3><p class="period">23 Jul 2023 → 01 Jul 2025</p><p>Growing into BI, reports, deadlines and the kind of teamwork that deserves its own dashboard.</p></article>
+          <article><b>03</b><h3>Technical Analyst</h3><p class="period">01 Jul 2025 → 09 Oct 2026</p><p>More responsibility, more problem-solving, and one final chapter at my first company.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="copy"><div class="eyebrow">BI: Barath Intelligence</div><h2 class="title">The unofficial dashboard.</h2><p class="subtitle">Not audited. Definitely biased. Still more meaningful than most KPIs.</p></div>
+        </div>
+        <div class="stats reveal">
+          <article><span>☕</span><strong>∞</strong><p>Cups that somehow became meetings.</p></article>
+          <article><span>💬</span><strong>1000+</strong><p>Chats that started with work and ended elsewhere.</p></article>
+          <article><span>🤝</span><strong id="statPeople">0</strong><p>People represented on this memory wall.</p></article>
+          <article><span>💜</span><strong>1</strong><p>Chapter I'll always be glad I got to live.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="farewell">
+      <div class="container farewell-grid reveal">
+        <div><div class="eyebrow light">To everyone on this wall</div><h2>Today is my last working day at my first company. Thank you for being part of my story.</h2><p>For the help, laughs, honest feedback, random conversations, support and all the small moments that never make it onto a résumé — thank you. I'm leaving with more than experience. I'm leaving with memories.</p></div>
+        <div class="farewell-badge"><div class="date">09.10.26</div><h3>My last working day at my first company. Not goodbye. Just see you elsewhere.</h3><p>— Barath</p></div>
+      </div>
+    </section>
+
+    <section id="leave">
+      <div class="container leave reveal">
+        <div><div class="eyebrow">Your turn</div><h2 class="title">Leave Barath a memory.</h2><p class="subtitle">A moment I forgot, an inside joke, advice, or simply a goodbye. This opens your email app with the message prepared.</p></div>
+        <form id="memoryForm" class="form">
+          <label>Your name<input id="fromName" required placeholder="Name"></label>
+          <label>Your memory / message<textarea id="message" required placeholder="Write something Barath should remember…"></textarea></label>
+          <button class="btn btn-primary" type="submit">Prepare message →</button>
+          <small>Opens your email app addressed to <strong>barath.likewize@gmail.com</strong>. Please press Send in your email app to deliver it.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><strong class="wordmark small">barath<span>.</span></strong><span>2022–2026 · Built with AI assistance. Every memory handwritten by Barath.</span></div></footer>
+
+</body>
+</html>
